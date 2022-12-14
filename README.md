@@ -1,5 +1,9 @@
 # WeatherApp
 
+Built with Kivy
+
+
+
 how it will look like
 
 <img width="489" alt="Main Window" src="https://user-images.githubusercontent.com/82713289/206546938-c62b7a64-6d5c-42aa-96d4-0a3f4837714b.png">
