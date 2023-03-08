@@ -1,0 +1,229 @@
+WindowManager:
+    MainWindow:
+    ForecastWindow:
+
+
+<Label>
+    bold:True
+
+<MainWindow>:
+    name: "main"
+
+ # dynamic placement size/pos_hint values between (0=0% and 1=100%, coordinate system from bottom left)
+    FloatLayout:
+
+        Label:
+            id:datetime
+            color: 0.14, 0.39, 0.39,1
+            text:""
+            pos_hint:{'center_x':0.5, 'center_y':0.95}
+            font_size: self.height/25       
+        Image:
+            id: weather_image
+            source: ""
+            pos_hint:{'center_x':0.5, 'center_y':0.825}  
+        Label:
+            id: city
+            text: ""
+            pos_hint:{'center_x':0.5, 'center_y':0.7}
+            color: 0.14, 0.39, 0.39,1
+            font_size: self.height/25
+        Label:
+            id: country
+            text: ""
+            pos_hint:{'center_x':0.5, 'center_y':0.65}
+            color: 0.14, 0.39, 0.39,1
+            font_size: self.height/30
+        Label:
+            id:temperature
+            text: ""
+            font_size:self.height/20
+            color:  0.196, 0.6, 0.78
+            pos_hint:{'center_x':0.5, 'center_y':0.55}
+        Label:
+            id:description
+            color:0.141, 0.47, 0.51, 1 
+            text: ""
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.4}
+        Label:
+            id:humidity
+            color:0.141, 0.47, 0.51, 1  
+            text: ""
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.35}
+        Label:
+            id:advice
+            color:0.196, 0.6, 0.78
+            text: ""
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.45}
+        Label:
+            id:windspeed
+            color:0.141, 0.47, 0.51, 1 
+            text: ""
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.3}
+                    
+        FloatLayout:
+            size_hint_y: 0.25
+            canvas:
+                Color: 
+                    rgb:rgba(50, 200, 200,1)
+                RoundedRectangle:
+                    size: self.size
+                    pos:self.pos
+                    radius: [25,25,0,0]
+            
+            TextInput:
+                id:city_name
+                hint_text:"Enter city"
+                size_hint: 0.9, 0.3
+                height:self.minimum_height
+                pos_hint:{"center_x":0.5, "center_y":0.7}
+                multiline:False
+                font_size: self.height/1.7
+                hint_text_color: 0.94 ,0.87, 0.706,1 
+                foreground_color: 0.94 ,0.87, 0.706,1 
+                background_color: 0.23, 0.60, 0.88,1
+                padding: 15
+                cursor_color: 0.94 ,0.87, 0.706,1 
+                cursor_width:"3sp"
+
+                    
+            Button:
+                text: "Weather"
+                font_size: self.height/2.25
+                size_hint: 0.4, 0.3
+                pos_hint: {"center_x": 0.25, "center_y": 0.3}
+                background_color: 0.13, 0.88, 0.88,1
+                color: 0.94 ,0.87, 0.706,1 
+                on_release: 
+                    app.check_city_name('actual')
+
+            
+            Button:
+                id:forecast
+                text: "Forecast"
+                font_size: self.height/2.25
+                size_hint: 0.4, 0.3 
+                pos_hint: {"center_x": 0.75, "center_y": 0.3}
+                background_color: 0.13, 0.88, 0.88,1
+                color: 0.94 ,0.87, 0.706,1 
+                on_release: 
+                    app.check_city_name('forecast')
+                    app.root.current='forecast' 
+                    root.manager.transition.direction = "left" 
+
+<ForecastWindow>:
+    name:'forecast'
+    
+    FloatLayout:
+        Label:
+            id:forecastCity
+            color:0.196, 0.6, 0.78
+            text: "Berlin"
+            font_size:self.height/25
+            pos_hint:{'center_x':0.8, 'center_y':0.95}
+        Label:
+            id:dayone
+            color:0.141, 0.47, 0.51, 1 
+            text: 'in 1 day'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.19, 'center_y':0.95}
+        Label:
+            id: temperatureForecast1
+            color: 0.14, 0.39, 0.39,1
+            text:'18 Grad'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.9}
+        Label:
+            id: descriptionForecast1
+            color: 0.14, 0.39, 0.39,1
+            text:'overcast clouds'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.85}
+        Label:
+            id: windspeedForecast1
+            color: 0.14, 0.39, 0.39,1
+            text:'Windspeed 3.66 km/h'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.8}
+        
+        Label:
+            id:daytwo
+            color:0.141, 0.47, 0.51, 1 
+            text: 'in 2 days'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.2, 'center_y':0.7}
+
+        Label:
+            id: temperatureForecast2
+            color: 0.14, 0.39, 0.39,1
+            text:'18 Grad'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.65}
+        Label:
+            id: descriptionForecast2
+            color: 0.14, 0.39, 0.39,1
+            text:'overcast clouds'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.6}
+        Label:
+            id: windspeedForecast2
+            color: 0.14, 0.39, 0.39,1
+            text:'Windspeed 3.66 km/h'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.55}
+        Label:
+            id:daythree
+            color:0.141, 0.47, 0.51, 1 
+            text: 'in 3 days'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.2, 'center_y':0.45}
+        Label:
+            id: temperatureForecast3
+            color: 0.14, 0.39, 0.39,1
+            text:'18 Grad'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.4}
+        Label:
+            id: descriptionForecast3
+            color: 0.14, 0.39, 0.39,1
+            text:'overcast clouds'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.35}
+        Label:
+            id: windspeedForecast3
+            color: 0.14, 0.39, 0.39,1
+            text:'Windspeed 3.66 km/h'
+            font_size:self.height/30
+            pos_hint:{'center_x':0.5, 'center_y':0.3}
+
+        FloatLayout:
+            size_hint_y: 0.25
+            
+            canvas:
+                Color: 
+                    rgb:rgba(50, 200, 200,1)
+                RoundedRectangle:
+                    size: self.size
+                    pos:self.pos
+                    radius: [25,25,0,0]       
+            Button:
+                text: "Main Menu"
+                font_size: self.height/2.25
+                size_hint: 0.4, 0.3
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                background_color: 0.13, 0.88, 0.88,1
+                color: 0.94 ,0.87, 0.706,1 
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "right"
+                
+            
+            
+
+
+
+                
