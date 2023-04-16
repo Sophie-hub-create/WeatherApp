@@ -105,7 +105,7 @@ class showWeatherApp(App):
         :return: a list object with geodata(lat and lon) and a flag value (0/1)
         """
         
-        with gzip.open("/Users/sophieischenko/Downloads/city.list.json.gz", "rt") as f:
+        with gzip.open("city.list.json.gz", "rt") as f:
             expected_dict = json.load(f)
 
         lat = None
